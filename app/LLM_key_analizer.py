@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import json
 import re
+
 def analizing_keys(text, question, pdf_name):
     API_KEY = os.getenv('API_KEY')
     API_URL = os.getenv('API_URL')
