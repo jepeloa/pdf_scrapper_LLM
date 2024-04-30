@@ -1,5 +1,14 @@
 import PyPDF2 
 import re
+
+def obtain_number_of_pages(pdf_file):
+
+    with open(pdf_file, 'rb') as pdf_a:
+        reader = PyPDF2.PdfReader(pdf_a)
+        number_of_pages = len(reader.pages)
+    return number_of_pages
+
+
 def fetch_pdf_content(pdf_file, start: int = 0, end: int = 0) -> str:
 
     #hardcoding aca, ver despues de definir bien esto

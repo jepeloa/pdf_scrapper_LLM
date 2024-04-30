@@ -17,6 +17,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
+
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
 ARG UID=10001
@@ -47,4 +48,4 @@ COPY . .
 EXPOSE 8008
 
 # Run the application.
-CMD uvicorn 'main:app' --host=0.0.0.0 --port=8008
+CMD uvicorn 'main:app' --host=0.0.0.0 --port=8008 --reload
