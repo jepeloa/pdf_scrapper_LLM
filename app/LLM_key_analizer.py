@@ -23,7 +23,8 @@ def analizing_keys(text, question):
             {"role": "user", "content": f"question: {question}, output in JSON. The answer always must start with'{' and stop with '}', never add extra text, use the provide schema to respond"}
         ],
         "options": {
-            "temperature": TEMPERATURE
+            "temperature": TEMPERATURE,
+            "num_predict":100    #maxima cantidad de tokens ollama
         },
         "format":"json"
 

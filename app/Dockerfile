@@ -38,14 +38,23 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
+
+RUN apt-get update
+RUN apt-get -y install cron
+COPY crontab /etc/cron.d/crontab
+RUN chmod 0644 /etc/cron.d/crontab
+RUN touch /var/log/cron.log
+CMD cron && tail -f /var/log/cron.log
 # Switch to the non-privileged user to run the application.
+
 USER appuser
 
 # Copy the source code into the container.
 COPY . .
-
+USER root
+RUN chown -R appuser:appuser /app
+user appuser
 # Expose the port that the application listens on.
 EXPOSE 8008
-
 # Run the application.
 CMD uvicorn 'main:app' --host=0.0.0.0 --port=8008 --reload
