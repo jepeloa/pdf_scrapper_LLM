@@ -16,17 +16,27 @@ def analizing_keys(text, question):
         'Content-Type': 'application/json',
     }
     #aca jugar con los modelos 
+    # data = {
+    #     'model': MODEL,
+    #     'messages': [
+    #         {"role": "system", "content": f"You are a helpful IA assistant. You are an expert extracting information from text. Use this {text} as source data for respond the question. Always Output in JSON format"},
+    #         {"role": "user", "content": f"question: {question}, output in JSON. The answer always must start with'{' and stop with '}', never add extra text, use the provide schema to respond"}
+    #     ],
+    #     "options": {
+    #         "temperature": TEMPERATURE,
+    #         "num_predict":1000    #maxima cantidad de tokens ollama
+    #     },
+    #     "format":"json"
+
+    # }
+
     data = {
         'model': MODEL,
+        'temperature': TEMPERATURE,
         'messages': [
             {"role": "system", "content": f"You are a helpful IA assistant. You are an expert extracting information from text. Use this {text} as source data for respond the question. Always Output in JSON format"},
             {"role": "user", "content": f"question: {question}, output in JSON. The answer always must start with'{' and stop with '}', never add extra text, use the provide schema to respond"}
-        ],
-        "options": {
-            "temperature": TEMPERATURE,
-            "num_predict":100    #maxima cantidad de tokens ollama
-        },
-        "format":"json"
+        ]
 
     }
 
@@ -37,7 +47,7 @@ def analizing_keys(text, question):
         # Asumimos que la última respuesta del modelo es la respuesta a la pregunta
         return response_json['choices'][0]['message']['content']
     else:
-        return "fail, wrong response"
+        return response_json
 
 def key_responses(pdf_text1, keys, pdf_name, start_page, end_page):
     response_json_ = {}

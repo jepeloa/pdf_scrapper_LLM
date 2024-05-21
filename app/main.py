@@ -23,6 +23,14 @@ def texto(items: List[str]):
     print(items)
     return {"message": "Función texto ejecutada"}
 
+# post:
+# {
+#   "items": [
+#     "Quiero que hagas un resumen del texto teniendo en cuenta que se trata de una reunion entre un cliente y un proveedor, y que de la reunion tiene por objetivo relevar informacion de un sistema que se encuentra en funcionamiento. Para generar el resumen debes incorporar el tiempo de inicio. Te muestro un schema de ejemplo para dos intervalos de tiempo puede tener mas o menos. Schema: {'t1':'tiempo de inicio utilizar formato HH:MM:SS', 'resumen1':resumen del texto, t2':'tiempo de inicio utilizar formato HH:MM:SS', 'resumen2':resumen del texto}"
+#   ]
+# }
+
+
 @app.post("/process_pdf/")
 def procesar_lista(item_list: ItemList):
     #keys_ = ["What is the language of the text?", "Create a brief resume of the text","Create a list of 5 tags that are representative of the text"] 

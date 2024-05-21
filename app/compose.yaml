@@ -13,6 +13,9 @@ services:
       context: .
     ports:
       - 8008:8008
+      - 8888:8888
+    volumes:
+      - ./notebooks:/app/notebooks
     environment:
       - API_KEY=${API_KEY}
       - API_URL=${API_URL}
